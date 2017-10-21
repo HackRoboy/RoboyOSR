@@ -1,0 +1,15 @@
+Hack Roboy #3
+
+# Speech recognition Server
+https://github.com/alumae/kaldi-gstreamer-server
+
+# Container Speech recognition Server
+https://github.com/jcsilva/docker-kaldi-gstreamer-server
+
+docker pull jcsilva/docker-kaldi-gstreamer-server
+
+wget https://phon.ioc.ee/~tanela/tedlium_nnet_ms_sp_online.tgz
+# move to d:\lucida\models
+
+docker run -it -p 8080:80 -v D:\lucida\models:/opt/models jcsilva/docker-kaldi-gstreamer-server:latest /bin/bash
+
