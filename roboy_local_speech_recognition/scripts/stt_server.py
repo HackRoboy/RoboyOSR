@@ -76,18 +76,22 @@ def stt_with_vad():
             ring_buffer_index += 1
             ring_buffer_index %= NUM_WINDOW_CHUNKS
             if not triggered:
+				# No speech recognized yet
                 ring_buffer.append(chunk)
                 num_voiced = sum(ring_buffer_flags)
                 if num_voiced > 0.5 * NUM_WINDOW_CHUNKS:
+					# Enough speech detected to trigger
                     sys.stdout.write('+')
                     triggered = True
                     voiced_frames.extend(ring_buffer)
                     ring_buffer.clear()
             else:
+				# Speech recognized, waiting for end of speech
                 voiced_frames.append(chunk)
                 ring_buffer.append(chunk)
                 num_unvoiced = NUM_WINDOW_CHUNKS - sum(ring_buffer_flags)
                 if num_unvoiced > 0.9 * NUM_WINDOW_CHUNKS:
+					# Pause long enough to assume end of sentence
                     sys.stdout.write('-')
                     triggered = False
                     got_a_sentence = True
