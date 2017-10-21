@@ -55,7 +55,7 @@ class MyClient(WebSocketClient):
                     e = sys.exc_info()[0]
                     print >> sys.stderr, "Failed to send adaptation state: ",  e
             with self.audiofile as audiostream:
-                for block in iter(lambda: audiostream.read(self.byterate/4), ""):
+                for block in iter(lambda: audiostream.read(self.byterate/10), ""):
                     self.send_data(block)
             print >> sys.stderr, "Audio sent, now sending EOS"
             self.send("EOS")
@@ -74,7 +74,7 @@ class MyClient(WebSocketClient):
                 if response['result']['final']:
                     #print >> sys.stderr, trans,
                     self.final_hyps.append(trans)
-                    print >> sys.stderr, '\r%s' % trans.replace("\n", "\\n")
+                    print >> sys.stderr, '\r\n%s' % trans.replace("\n", "\\n")
                 else:
                     print_trans = trans.replace("\n", "\\n")
                     if len(print_trans) > 80:
