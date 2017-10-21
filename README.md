@@ -18,10 +18,14 @@ Therefore the SR does not meet the requirements of a cool DEMO.
 
 - Change Speech Recognition Code to stream the Audio to the LAN via GStreamer
 
-
-
 # First Steps
 - Build and Download Lucida Docker Image
 - Modify package that it conects to Roboy as ROS NODE
 - Build Streaming Interface on Roboy
 - 
+
+# Hardware
+- Shuttle PC
+- Network Switch
+- 2x LAN Cabel
+- Monitor
