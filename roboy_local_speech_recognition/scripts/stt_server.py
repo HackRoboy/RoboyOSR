@@ -131,7 +131,7 @@ def handle_stt(req):
 	return queue.get()
 
 def stt_server():
-    rospy.init_node('roboy_speech_recognition')
+    rospy.init_node('roboy_local_speech_recognition')
     s = rospy.Service('/roboy/cognition/speech/recognition', RecognizeSpeech, handle_stt)
 
     global bing 

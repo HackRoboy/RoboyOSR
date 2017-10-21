@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>roboy_speech_recognition</name>
+  <name>roboy_local_speech_recognition</name>
   <version>0.0.2</version>
-  <description>Speech to text using Bing Speech API</description>
+  <description>Speech to text using an external KALDI GStreamer Server</description>
 
   <maintainer email="unicorn@roboy.org">Alona Kharchenko</maintainer>
 
