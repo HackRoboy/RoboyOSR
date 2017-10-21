@@ -11,17 +11,18 @@ import pyaudio
 import traceback
 import pdb 
 
+
+# Import Roboy Stuff
+from KALDI_util import *
+
 abs_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(abs_path, "..", "..", "common"))
 
-from bing_voice import *
 from roboy_communication_cognition.srv import RecognizeSpeech
 
 
 
-BING_KEY = ''
-
-def stt_with_vad(bing):
+def stt_with_vad():
 
     FORMAT = pyaudio.paInt16
     CHANNELS = 1
@@ -34,7 +35,6 @@ def stt_with_vad(bing):
     NUM_WINDOW_CHUNKS = int(240 / CHUNK_DURATION_MS)
 
     vad = webrtcvad.Vad(2)
-    # bing = BingVoice(BING_KEY)
 
     pa = pyaudio.PyAudio()
     stream = pa.open(format=FORMAT,
@@ -99,20 +99,9 @@ def stt_with_vad(bing):
         
         stream.stop_stream()
         print("* done recording")
-
-        # recognize speech using Microsoft Bing Voice Recognition
-        try:
-            # pdb.set_trace()
-            text = bing.recognize(data, language='en-US')
-            # pdb.set_trace()
-            print('Bing:' + text.encode('utf-8'))
-            stream.close()
-            return text
-        except UnknownValueError:
-            traceback.print_exc()
-            print("Microsoft Bing Voice Recognition could not understand audio")
-        except RequestError as e:
-            print("Could not request results from Microsoft Bing Voice Recognition service; {0}".format(e))
+        
+		text = recogniseSpeechData(data)
+        print('Recognized Text:' + text.encode('utf-8'))
             
         got_a_sentence = False
             
@@ -121,7 +110,7 @@ def stt_with_vad(bing):
     return text
 
 def stt_subprocess(q):
-	q.put(stt_with_vad(bing))
+	q.put(stt_with_vad())
 
 def handle_stt(req):
 	queue = Queue()
@@ -133,10 +122,7 @@ def handle_stt(req):
 def stt_server():
     rospy.init_node('roboy_local_speech_recognition')
     s = rospy.Service('/roboy/cognition/speech/recognition', RecognizeSpeech, handle_stt)
-
-    global bing 
-    bing = BingVoice(BING_KEY)
-    
+	
     print "Ready to recognise speech."
     rospy.spin()
 
