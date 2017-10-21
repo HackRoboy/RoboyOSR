@@ -39,7 +39,7 @@ class MyClient(WebSocketClient):
         self.save_adaptation_state_filename = save_adaptation_state_filename
         self.send_adaptation_state_filename = send_adaptation_state_filename
 
-    @rate_limited(4)
+    @rate_limited(10)
     def send_data(self, data):
         self.send(data, binary=True)
 
