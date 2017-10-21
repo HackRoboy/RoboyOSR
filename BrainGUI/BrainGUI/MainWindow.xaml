@@ -12,21 +12,22 @@
         Foreground="White"
         Title="Robo Brain" Height="350" Width="525">
     
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="ROBOY BRAIN v2.0" TextAlignment="Center" FontSize="30" FontFamily="Roboto"  Grid.Row="0"/>
-        <Image gif:ImageBehavior.AnimatedSource="res/Gehirn.gif" Grid.Row="1"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Source="res/RoboyLogo.png" Grid.Row="0" Grid.Column="0" Width="200" Height="200" HorizontalAlignment="Left" />
+        <TextBlock Text="ROBOY BRAIN v2.0" TextAlignment="Center" FontSize="100" FontFamily="Source Code Pro ExtraLight"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Image gif:ImageBehavior.AnimatedSource="res/Gehirn.gif" Grid.Row="1" Name="Gif" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <TextBlock Text="STATUS: Waiting for signals..." Name="TextBlockStatus"  HorizontalAlignment="Left" Grid.Column="0" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Bottom"  TextWrapping="Wrap"/>
+        <TextBlock Text="Connected" Name="TextBlockConnection" HorizontalAlignment="Right" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"/>
 
-        <DockPanel Grid.Row="2">
-            <TextBlock Text="STATUS: Waiting for signals..." Name="TextBlockStatus"  HorizontalAlignment="Left"/>
-            <TextBlock Text="Connected" Name="TextBlockConnection" HorizontalAlignment="Right"/>
-            
-        </DockPanel>
-        
-        
+
     </Grid>
 </Window>
