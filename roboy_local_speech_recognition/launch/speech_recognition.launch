@@ -1,0 +1,3 @@
+<launch>
+	<node name="roboy_local_speech_recognition" pkg="roboy_local_speech_recognition" type="stt_server.py" output="screen" />
+</launch>
