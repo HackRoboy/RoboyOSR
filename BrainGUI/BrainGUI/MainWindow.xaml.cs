@@ -167,12 +167,11 @@ namespace BrainGUI
 
             try
             {
-                const string host = "ws://10.177.254.60:8080/client/ws/status";
+                string host = Properties.Settings.Default.ip;
                 senderSock = new ClientWebSocket();
                 await senderSock.ConnectAsync(new Uri(host), CancellationToken.None);
 
                 listenToSocket();
-
                 //dispatcherTimer.Start();
             }
             catch (Exception e)
@@ -182,23 +181,5 @@ namespace BrainGUI
             }
         }
 
-        public static IPEndPoint CreateIPEndPoint(string endPoint)
-        {
-            string[] ep = endPoint.Split(':');
-            if (ep.Length != 2) throw new FormatException("Invalid endpoint format");
-
-            IPAddress ip;
-            if (!IPAddress.TryParse(ep[0], out ip))
-            {
-                throw new FormatException("Invalid ip-adress");
-            }
-
-            int port;
-            if (!int.TryParse(ep[1], NumberStyles.None, NumberFormatInfo.CurrentInfo, out port))
-            {
-                throw new FormatException("Invalid port");
-            }
-            return new IPEndPoint(ip, port);
-        }
     }
 }
