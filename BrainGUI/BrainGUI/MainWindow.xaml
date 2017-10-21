@@ -1,0 +1,32 @@
+﻿<Window x:Class="BrainGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BrainGUI"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        mc:Ignorable="d"
+        WindowStyle="None" ResizeMode="NoResize"  
+    WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Background="Black"
+        Foreground="White"
+        Title="Robo Brain" Height="350" Width="525">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="ROBOY BRAIN v2.0" TextAlignment="Center" FontSize="30" FontFamily="Roboto"  Grid.Row="0"/>
+        <Image gif:ImageBehavior.AnimatedSource="res/Gehirn.gif" Grid.Row="1"/>
+
+        <DockPanel Grid.Row="2">
+            <TextBlock Text="STATUS: Waiting for signals..." Name="TextBlockStatus"  HorizontalAlignment="Left"/>
+            <TextBlock Text="Connected" Name="TextBlockConnection" HorizontalAlignment="Right"/>
+            
+        </DockPanel>
+        
+        
+    </Grid>
+</Window>
