@@ -29,3 +29,7 @@ Therefore the SR does not meet the requirements of a cool DEMO.
 - Network Switch
 - 2x LAN Cabel
 - Monitor
+
+# The Team
+
+![Alt text](docs/group.png?raw=true "Title")
